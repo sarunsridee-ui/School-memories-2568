@@ -1,102 +1,86 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title>ความทรงจำจากโรงเรียนเก่า</title>
+<meta charset="UTF-8">
+<title>ความทรงจำจากโรงเรียนเก่า</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      text-align: center;
-      background: linear-gradient(
-        270deg,
-        red, orange, yellow, green, cyan, blue, violet
-      );
-      background-size: 1400% 1400%;
-      animation: rainbow 20s ease infinite;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: linear-gradient(
+    45deg,
+    red, orange, yellow, green, cyan, blue, violet
+  );
+  background-size: 400% 400%;
+  animation: rainbow 15s ease infinite;
+}
 
-    @keyframes rainbow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+@keyframes rainbow {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
 
-    h1 {
-      color: #fff;
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 40px;
+  text-align: center;
+}
 
-    .intro {
-      background: rgba(255,255,255,0.9);
-      border-radius: 20px;
-      padding: 30px;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    .gallery {
-      margin-top: 50px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .gallery img {
-      max-width: 90%;
-      width: 600px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-  </style>
+.gallery img {
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 12px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
+  <div class="card">
     <h1>ความทรงจำจากโรงเรียนเก่า</h1>
-
-    <div class="intro">
-      เว็บไซต์นี้ถูกสร้างขึ้นเพื่อรวบรวมเรื่องราว  
-      เสียงหัวเราะ รอยยิ้ม และช่วงเวลาที่ไม่มีวันลืม  
-      จากรั้วโรงเรียนที่เคยเป็นบ้านหลังที่สองของพวกเรา  
-      <br><br>
-      ขอบคุณคุณครูทุกท่าน และทุกความทรงจำที่ยังอยู่
-    </div>
-
-    <div class="gallery" id="gallery"></div>
+    <p>
+      เว็บนี้รวบรวมภาพและช่วงเวลาที่ไม่มีวันลืม  
+      จากรั้วโรงเรียนที่เคยเป็นบ้านหลังที่สองของพวกเรา
+    </p>
   </div>
 
-  <script>
-    const images = [
-      "FB_IMG_1766051729729.jpg",
-      "FB_IMG_1766051721454.jpg",
-      "FB_IMG_1766051724811.jpg",
-      "FB_IMG_1766051728259.jpg",
-      "FB_IMG_1766051731739.jpg",
-      "FB_IMG_1766051734942.jpg",
-      "FB_IMG_1766051738937.jpg",
-      "FB_IMG_1766051741655.jpg"
-      // 👉 เพิ่มชื่อรูปของมึงต่อเองได้เรื่อย ๆ
-    ];
+  <div class="gallery" id="gallery"></div>
+</div>
 
-    const gallery = document.getElementById("gallery");
+<script>
+const images = [
+  "FB_IMG_1766051729727.jpg",
+  "FB_IMG_1766051721454.jpg",
+  "FB_IMG_1766051724811.jpg",
+  "FB_IMG_1766051728259.jpg",
+  "FB_IMG_1766051731739.jpg",
+  "FB_IMG_1766051734942.jpg",
+  "FB_IMG_1766051738937.jpg",
+  "FB_IMG_1766051741655.jpg"
+  // เพิ่มชื่อรูปได้เรื่อย ๆ
+];
 
-    images.forEach(name => {
-      const img = document.createElement("img");
-      img.src = "images/" + name;
-      gallery.appendChild(img);
-    });
-  </script>
+const gallery = document.getElementById("gallery");
+
+images.forEach(img => {
+  const image = document.createElement("img");
+  image.src = "images/" + img;
+  gallery.appendChild(image);
+});
+</script>
 
 </body>
 </html>
