@@ -8,7 +8,7 @@
 <style>
   body {
     margin: 0;
-    font-family: "Tahoma", sans-serif;
+    font-family: Tahoma, sans-serif;
     background: linear-gradient(
       270deg,
       red, orange, yellow, green, cyan, blue, violet
@@ -30,15 +30,11 @@
   }
 
   .card {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.92);
     border-radius: 20px;
     padding: 30px;
     text-align: center;
     margin-bottom: 40px;
-  }
-
-  h1 {
-    margin-top: 0;
   }
 
   #gallery {
@@ -50,8 +46,8 @@
 
   #gallery img {
     max-width: 90%;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
   }
 </style>
 </head>
@@ -62,11 +58,8 @@
   <div class="card">
     <h1>ความทรงจำจากโรงเรียนเก่า</h1>
     <p>
-      เว็บไซต์นี้ถูกรวบรวมขึ้นเพื่อเก็บเรื่องราว รอยยิ้ม  
-      และช่วงเวลาที่ไม่มีวันลืมจากรั้วโรงเรียน  
-      <br><br>
-      ขอบคุณคุณครูทุกท่านที่ไม่ได้สอนแค่ในตำรา  
-      แต่สอนให้เราเป็นคนที่ดีขึ้นในทุกๆ วัน
+      เรื่องราว เสียงหัวเราะ และช่วงเวลาที่ไม่มีวันลืม  
+      จากรั้วโรงเรียนที่เคยเป็นบ้านหลังที่สองของเรา
     </p>
   </div>
 
@@ -74,17 +67,28 @@
 </div>
 
 <script>
-  const gallery = document.getElementById("gallery");
+const gallery = document.getElementById("gallery");
 
-  // เดาไฟล์แบบไม่ต้องรู้ชื่อ (ขี้เกียจระดับตำนาน)
-  for (let i = 1766051700000; i <= 1766052000000; i += 1000) {
-    const img = document.createElement("img");
-    img.src = "images/FB_IMG_" + i + ".jpg";
-    img.loading = "lazy";
+// 👇 เปลี่ยนแค่ชื่อ user กับ repo ถ้ามี
+const apiURL =
+  "https://api.github.com/repos/sarunsridee-ui/School-memories-2568/contents/images";
 
-    img.onerror = () => img.remove(); // ไม่มีไฟล์ = ทิ้ง
-    gallery.appendChild(img);
-  }
+fetch(apiURL)
+  .then(res => res.json())
+  .then(files => {
+    files.forEach(file => {
+      if (file.type === "file" && file.name.match(/\.(jpg|jpeg|png)$/i)) {
+        const img = document.createElement("img");
+        img.src = file.download_url;
+        img.loading = "lazy";
+        gallery.appendChild(img);
+      }
+    });
+  })
+  .catch(err => {
+    gallery.innerHTML = "<p>รูปไม่ขึ้น เพราะ GitHub งอแง 😭</p>";
+    console.error(err);
+  });
 </script>
 
 </body>
